@@ -44,12 +44,17 @@ public class LogAspect {
     @Pointcut("execution(* ariefbelajarteknologi.aop.service.HelloService.*(java.lang.String))")
     public void pointcutHelloServiceStringParam() {
 
-    }
+    }                                                                   /*
 
     @Before("pointcutHelloServiceStringParam()")
     public void logStringParameter(JoinPoint joinPoint) {
         String value = (String) joinPoint.getArgs()[0];
         log.info("Execute method with parameter : " + value);
+    }
+                                                                        */
+    @Before("pointcutHelloServiceStringParam() && args(name)")
+    public void logStringParameter(String name) {
+        log.info("Execute method with parameter : " + name);
     }
 
     @Pointcut("execution(* ariefbelajarteknologi.aop.service.*.*(..))")
